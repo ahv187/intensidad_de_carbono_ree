@@ -25,11 +25,29 @@ df_maestro['dia_semana'] = df_maestro.index.dayofweek
 df_maestro['dia_año'] = df_maestro.index.dayofyear
 df_maestro['mes'] = df_maestro.index.month
 
-lag_24h = 288 # 24 h / 5 min
 
-df_maestro['eol_lag_24h'] = df_maestro['eol'].shift(lag_24h)
-df_maestro['dem_lag_24h'] = df_maestro['dem'].shift(lag_24h)
-df_maestro['sol_lag_24h'] = df_maestro['sol'].shift(lag_24h)
+lag_1h = 12
+lag_24h = 288 # 24 h / 5 min
+lag_1s = lag_24h * 7
+
+for col in ['dem', 'eol', 'solFot', 'solTer', 'cc', 'conb', 'turb']:
+    print(f"Creando lags para: {col}")
+    df_maestro[f'{col}_lag_1'] = df_maestro[col].shift(1)
+    df_maestro[f'{col}_lag_3'] = df_maestro[col].shift(3)
+    df_maestro[f'{col}_lag_1h'] = df_maestro[col].shift(lag_1h)
+    df_maestro[f'{col}_lag_1d'] = df_maestro[col].shift(lag_24h)
+    df_maestro[f'{col}_lag_1s'] = df_maestro[col].shift(lag_1s)
+    df_maestro[f'{col}_media_1h'] = df_maestro[col].rolling(window=lag_1h).mean()
+    df_maestro[f'{col}_std_1h'] = df_maestro[col].rolling(window=lag_1h).std()
+    df_maestro[f'{col}_media_6h'] = df_maestro[col].rolling(window=lag_1h*6).mean()
+    df_maestro[f'{col}_media_1d'] = df_maestro[col].rolling(window=lag_24h).mean()
+
+    
+
+for col in ['temp_max_nacional_ponderada', 'temp_min_nacional_ponderada', 'viento_nacional_ponderado', 'precipitacion_nacional_ponderada']:
+    print(f"Creando lags para: {col}")
+    df_maestro[f'{col}_lag_1d'] = df_maestro[col].shift(lag_24h)
+
 
 df_maestro = df_maestro.drop(columns=['fecha_dia'])
 df_maestro = df_maestro.dropna()
