@@ -1,0 +1,17 @@
+/data/0_raw/
+/data/1_intermediate/
+/data/2_processed/
+/models/
+
+.env
+.env.*
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.ipynb_checkpoints
+
+.venv/
+.vscode/
