@@ -1,0 +1,9 @@
+pandas
+requests
+numpy
+scikit-learn
+xgboost
+lightgbm
+lxml
+pyarrow
+xlrd
