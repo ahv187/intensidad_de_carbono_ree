@@ -57,5 +57,5 @@ while fecha <= fecha_fin:
     fecha += delta
 
 df_total = pd.concat(datos_ree)
-df_total.to_parquet('data/1_intermediate/ree_5min_limpio.parquet')
+df_total.to_parquet('data/0_raw/ree_5min_bruto.parquet')
 print(f'Datos guardados.')
