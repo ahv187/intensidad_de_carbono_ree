@@ -7,3 +7,5 @@ lightgbm
 lxml
 pyarrow
 xlrd
+matplotlib
+python-dotenv

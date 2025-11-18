@@ -77,7 +77,6 @@ df_aemet = df_aemet.rename(columns={
     'Precipitación 00-24h (mm)': 'precipitacion_total'
 })
 
-
 df_aemet['provincia'] = df_aemet['provincia'].str.upper().str.strip()
 conteo_provincia = df_aemet.groupby(['fecha', 'provincia'])['provincia'].transform('size')
 df_aemet['n_estaciones_provincia'] = conteo_provincia

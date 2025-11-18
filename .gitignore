@@ -1,7 +1,4 @@
-/data/0_raw/
-/data/1_intermediate/
-/data/2_processed/
-/models/
+/cds_grib/
 
 .env
 .env.*
